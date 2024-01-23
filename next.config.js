@@ -1,14 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    async rewrites() {
-      return [
-        {
-          source: "/api/:path*",
-          destination: "http://localhost:1000/:path*",
-          // destination: "https://todo-mern-livid.vercel.app/:path*",
-        },
-      ];
-    },
-  }
-  
-  module.exports = nextConfig;
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://todo-black-gamma.vercel.app/:path*", // Ensure correct path structure
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;

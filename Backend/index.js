@@ -13,8 +13,8 @@ dbConnection();
 app.get("/", (req, res) => {
   res.send("server is running!");
 });
-app.use("/api/v1", auth);
-app.use("/api/v2", list);
+app.use("/user", auth);
+app.use("/list", list);
 
 app.listen(PORT, () => {
   console.log(`Server is running successfully on port ${PORT}`);
