@@ -1,11 +1,13 @@
 "use client";
 import axios from "axios";
+import { useRouter } from 'next/navigation'
 import { useState } from "react";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +18,7 @@ export default function Signup() {
       password,
     };
     try {
-      const res = await axios.post("/api/v1/register", data);
+      const res = await axios.post("/api/user/register", data);
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -61,7 +63,7 @@ export default function Signup() {
                   htmlFor="text"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                NAME                
+                  NAME
                 </label>
               </div>
               <div className="mt-2">
@@ -84,7 +86,7 @@ export default function Signup() {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                   Password
+                  Password
                 </label>
               </div>
               <div className="mt-2">
@@ -105,7 +107,8 @@ export default function Signup() {
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
+                onClick={() => router.push('/login')}
+                >
                 Sign in
               </button>
             </div>

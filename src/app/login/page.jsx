@@ -1,14 +1,30 @@
 "use client";
+import axios from "axios";
 import { useState } from "react";
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter()
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", input1, input2);
+    console.log("Form submitted:", email, password);
+    const data = {
+      email,
+      password,
+    };
+    try {
+      const res = await axios.post("/api/user/signin", data);
+      console.log(res);
+      // redirect("/sign-up");
+    } catch (error) {
+      console.log(error);
+    }
   };
+
 
   return (
     <>
@@ -35,9 +51,9 @@ export default function Login() {
                   type="email"
                   autoComplete="email"
                   required
-                  value={input1}
+                  value={email}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  onChange={(e) => setInput1(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -58,9 +74,9 @@ export default function Login() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  value={input2}
+                  value={password}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  onChange={(e) => setInput2(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -69,7 +85,7 @@ export default function Login() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                login
               </button>
             </div>
           </form>

@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "https://todo-black-gamma.vercel.app/:path*", // Ensure correct path structure
+        destination: "http://localhost:1000/:path*", // Ensure correct path structure
       },
     ];
   },
